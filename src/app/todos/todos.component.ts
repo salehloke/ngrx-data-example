@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { TodoFormModel, TodoModel } from './shared/models/todo-form.model';
+import { addTodo, retrievedTodoList } from './shared/state/todo.action';
 
 @Component({
   selector: 'app-todos',
@@ -13,7 +15,7 @@ export class TodosComponent implements OnInit {
   todoForm: FormGroup<TodoFormModel>;
   todoList$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
 
-  constructor(private toastr: ToastrService, private fb: FormBuilder) {}
+  constructor(private toastr: ToastrService, private store: Store) {}
 
   ngOnInit() {
     this.todoForm = new FormGroup<TodoFormModel>({
@@ -33,5 +35,19 @@ export class TodosComponent implements OnInit {
 
     // reset form
     this.todoForm.reset();
+  }
+
+  addTodoAction(todoId: string) {
+    // TODO: Dispatch an increment action
+    this.store.dispatch(addTodo({ todoId }));
+  }
+
+  removeTodoAction() {
+    // TODO: Dispatch a decrement action
+  }
+
+  retrievedTodoAction() {
+    // TODO: Dispatch a reset action
+    // this.store.dispatch(retrievedTodoList({ todos }))
   }
 }

@@ -5,5 +5,6 @@ export interface TodoFormModel {
 }
 
 export interface TodoModel {
+  todoId: string;
   description: string;
 }
