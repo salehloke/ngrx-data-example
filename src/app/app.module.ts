@@ -15,7 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     ToastrModule.forRoot({
       closeButton: true,
-      timeOut: 15000, // 15 seconds
+      timeOut: 2000, // 2 seconds
       progressBar: true,
     }),
   ],

@@ -11,9 +11,7 @@ import { TodoFormModel, TodoModel } from './shared/models/todo-form.model';
 })
 export class TodosComponent implements OnInit {
   todoForm: FormGroup<TodoFormModel>;
-  todoList$: BehaviorSubject<TodoFormModel[]> = new BehaviorSubject<
-    TodoFormModel[]
-  >([]);
+  todoList$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
 
   constructor(private toastr: ToastrService, private fb: FormBuilder) {}
 
@@ -26,11 +24,14 @@ export class TodosComponent implements OnInit {
 
   onAddTodo() {
     // get the todo item
-    const todo = this.todoForm.controls;
+    const todo = this.todoForm.value.description;
     let todoList = this.todoList$.value;
     todoList.push(todo);
     // pass to the observables
     this.todoList$.next(todoList);
-    this.toastr.success('added new todo');
+    this.toastr.success(`added new task: ${todo}`, 'Success');
+
+    // reset form
+    this.todoForm.reset();
   }
 }

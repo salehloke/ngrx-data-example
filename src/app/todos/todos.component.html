@@ -1,6 +1,7 @@
 <div class="container p-3">
   <h1>Todo</h1>
   <div class="row mb-2">
+    <!-- form start here -->
     <form [formGroup]="todoForm">
       <div class="col p-2">
         <textarea
@@ -12,11 +13,14 @@
         ></textarea>
       </div>
     </form>
-    <div></div>
-
+    <!-- end of form -->
+    <!-- add button -->
     <div class="pt-3">
       <button (click)="onAddTodo()" class="btn btn-primary">add todo</button>
     </div>
+    <!-- end of add button -->
   </div>
-  <div></div>
+  <div>
+    <li *ngFor="let todo of todoList$.value">{{ todo }}</li>
+  </div>
 </div>
